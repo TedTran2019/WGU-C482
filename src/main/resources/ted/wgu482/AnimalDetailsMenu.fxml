@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="400.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <children>
         <VBox layoutY="-1.0" prefHeight="300.0" prefWidth="400.0">
             <children>
@@ -36,13 +36,13 @@
                         <Label text="Price:" GridPane.rowIndex="4" />
                   <Label text="Vaccinated:" GridPane.rowIndex="5" />
                   <Label text="Special:" GridPane.rowIndex="6" />
-                  <Label text="Label" GridPane.columnIndex="1" />
-                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label fx:id="idLabel" text="Label" GridPane.columnIndex="1" />
+                  <Label fx:id="breedLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="lifespanLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="behaviorLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="priceLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="vaccinatedLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label fx:id="specialLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                     </children>
                 </GridPane>
             </children>
@@ -52,7 +52,7 @@
         </VBox>
         <HBox alignment="TOP_RIGHT" layoutY="289.0" prefHeight="54.0" prefWidth="400.0" spacing="10.0">
             <children>
-                <Button mnemonicParsing="false" text="Back" />
+                <Button mnemonicParsing="false" onAction="#onActionMainMenu" text="Back" />
             </children>
             <padding>
                 <Insets left="20.0" right="20.0" top="20.0" />

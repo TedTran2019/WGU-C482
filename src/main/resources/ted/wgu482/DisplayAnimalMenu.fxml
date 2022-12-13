@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+   <children>
+      <VBox layoutY="-1.0" prefHeight="317.0" prefWidth="500.0">
+         <children>
+            <TableView fx:id="tableView" prefHeight="322.0" prefWidth="500.0">
+              <columns>
+                <TableColumn fx:id="idCol" prefWidth="125.0" text="ID" />
+                <TableColumn fx:id="breedCol" minWidth="4.0" prefWidth="125.0" text="Breed" />
+                  <TableColumn fx:id="lifespanCol" minWidth="0.0" prefWidth="125.0" text="Lifespan" />
+                  <TableColumn fx:id="priceCol" prefWidth="125.0" text="Price" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER_RIGHT" layoutY="320.0" prefHeight="80.0" prefWidth="500.0" spacing="10.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#onActionSeeDetails" prefWidth="60.0" text="Details" />
+            <Button mnemonicParsing="false" onAction="#onActionMainMenu" prefWidth="60.0" text="Back" />
+         </children>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+      </HBox>
+   </children>
+</AnchorPane>
