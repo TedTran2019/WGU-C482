@@ -23,14 +23,22 @@ public class MainMenuController {
         stage.setScene(new Scene(root));
         stage.show();
     }
-
     @FXML
-    void onActionDisplayAnimal(ActionEvent event) {
-
+    void onActionDisplayAnimal(ActionEvent event) throws IOException {
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        System.out.println(getClass());
+        root = FXMLLoader.load(getClass().getResource("DisplayAnimalMenu.fxml"));
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @FXML
     void onActionExit(ActionEvent event) {
+        System.exit(0);
+    }
 
+    @FXML
+    public void initialize() {
+        System.out.println("MainMenuController initialized");
     }
 }
