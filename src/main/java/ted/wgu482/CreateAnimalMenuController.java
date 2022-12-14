@@ -5,12 +5,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import ted.wgu482.model.Dog;
+import ted.wgu482.model.DataProvider;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class CreateAnimalMenuController {
     @FXML
@@ -39,13 +40,35 @@ public class CreateAnimalMenuController {
 
     @FXML
     void onActionMainMenu(ActionEvent event) throws IOException {
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        System.out.println(getClass());
-        root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-        stage.setScene(new Scene(root));
-        stage.show();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will clear all text fields, continue?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
     }
     @FXML
     void onActionSaveAnimal(ActionEvent event) throws IOException {
+    try {
+            String behavior = behaviorTextField.getText();
+            String breed = breedTextField.getText();
+            int id = Integer.parseInt(idTextField.getText());
+            int lifespan = Integer.parseInt(lifespanTextField.getText());
+            double price = Double.parseDouble(priceTextField.getText());
+            boolean vaccinated = vaccinatedYesRBtn.isSelected();
+            String special = null;
+
+            DataProvider.addAnimal(new Dog(id, breed, lifespan, behavior, price, vaccinated, special));
+            onActionMainMenu(event);
+        } catch(Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("Please enter valid data");
+            alert.showAndWait();
+        }
     }
 }

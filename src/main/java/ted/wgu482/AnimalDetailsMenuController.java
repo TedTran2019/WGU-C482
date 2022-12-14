@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import ted.wgu482.model.Animal;
+import ted.wgu482.model.Dog;
 
 import java.io.IOException;
 
@@ -43,5 +45,25 @@ public class AnimalDetailsMenuController {
         root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    @FXML
+    void setAnimal(Animal animal) {
+        breedLabel.setText(animal.getBreed());
+        idLabel.setText(Integer.toString(animal.getId()));
+        lifespanLabel.setText(Integer.toString(animal.getLifespan()));
+        priceLabel.setText(Double.toString(animal.getPrice()));
+        vaccinatedLabel.setText(Boolean.toString(animal.isVaccinated()));
+        behaviorLabel.setText(animal.getBehavior());
+        if (animal instanceof Dog) {
+            specialLabel.setText(((Dog) animal).getSpecialAbility());
+        } else {
+            specialLabel.setText("N/A");
+        }
+    }
+
+    @FXML
+    public void intiialize() {
+        System.out.println("AnimalDetailsMenuController initialized");
     }
 }
