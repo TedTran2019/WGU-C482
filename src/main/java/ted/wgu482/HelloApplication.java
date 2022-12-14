@@ -4,8 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ted.wgu482.model.DataProvider;
-import ted.wgu482.model.Dog;
+import ted.wgu482.model.*;
 
 import java.io.IOException;
 
@@ -26,6 +25,12 @@ public class HelloApplication extends Application {
         DataProvider.addAnimal(dog1);
         DataProvider.addAnimal(dog2);
         DataProvider.addAnimal(dog3);
+        Outsourced part = new Outsourced(1, "Part 1", 1.99, 1, 1, 1, "Company 1");
+        Product product = new Product(1, "Product 1", 1.99, 1, 1, 1);
+        product.addAssociatedPart(part);
+        System.out.println(product.getAllAssociatedParts());
+        product.deleteAssociatedPart(part);
+        System.out.println(product.getAllAssociatedParts());
         launch();
     }
 }
