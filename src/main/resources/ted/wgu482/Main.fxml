@@ -14,7 +14,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1"
+   fx:controller="ted.wgu482.MainController">
    <children>
       <VBox prefHeight="400.0" prefWidth="800.0">
          <children>
@@ -36,8 +37,8 @@
                      <children>
                         <GridPane>
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="175.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="175.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="148.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="186.0" minWidth="10.0" prefWidth="162.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -48,25 +49,25 @@
                                     <Font name="Times New Roman Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <TextField prefHeight="26.0" prefWidth="202.0" GridPane.columnIndex="1" />
+                              <TextField onInputMethodTextChanged="#partSearch" prefHeight="26.0" prefWidth="0.0" promptText="Search by Part ID or Name" GridPane.columnIndex="1" />
                            </children>
                            <padding>
                               <Insets left="20.0" right="20.0" />
                            </padding>
                         </GridPane>
-                        <TableView prefHeight="231.0" prefWidth="350.0">
+                        <TableView fx:id="partTableView" prefHeight="231.0" prefWidth="350.0">
                           <columns>
-                            <TableColumn prefWidth="49.0" text="Part ID" />
-                            <TableColumn text="Part Name" />
-                              <TableColumn prefWidth="96.0" text="Inventory Level" />
-                              <TableColumn prefWidth="124.0" text="Price/Cost per Unit" />
+                            <TableColumn fx:id="partIDCol" prefWidth="49.0" text="Part ID" />
+                            <TableColumn fx:id="partNameCol" text="Part Name" />
+                              <TableColumn fx:id="partInvLevelCol" prefWidth="96.0" text="Inventory Level" />
+                              <TableColumn fx:id="partPriceCol" prefWidth="124.0" text="Price/Cost per Unit" />
                           </columns>
                         </TableView>
                         <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="350.0" spacing="10.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Add" />
-                              <Button mnemonicParsing="false" text="Modify" />
-                              <Button layoutX="64.0" layoutY="10.0" mnemonicParsing="false" text="Delete" />
+                              <Button mnemonicParsing="false" onAction="#onActionAddPartForm" text="Add" />
+                              <Button mnemonicParsing="false" onAction="#onActionModifyPartForm" text="Modify" />
+                              <Button layoutX="64.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionDeletePart" text="Delete" />
                            </children>
                            <padding>
                               <Insets right="20.0" />
@@ -78,8 +79,8 @@
                      <children>
                         <GridPane>
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="175.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="175.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="129.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="187.0" minWidth="10.0" prefWidth="181.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -90,25 +91,25 @@
                                     <Font name="Times New Roman Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <TextField prefHeight="26.0" prefWidth="202.0" GridPane.columnIndex="1" />
+                              <TextField maxWidth="200.0" onInputMethodTextChanged="#productSearch" prefHeight="26.0" prefWidth="149.0" promptText="Search by Product ID or Name" GridPane.columnIndex="1" />
                            </children>
                            <padding>
                               <Insets left="20.0" right="20.0" />
                            </padding>
                         </GridPane>
-                        <TableView prefHeight="231.0" prefWidth="350.0">
+                        <TableView fx:id="productTableView" prefHeight="231.0" prefWidth="350.0">
                            <columns>
-                              <TableColumn prefWidth="62.0" text="Product ID" />
-                              <TableColumn prefWidth="83.0" text="Product Name" />
-                              <TableColumn prefWidth="91.0" text="Inventory Level" />
-                              <TableColumn prefWidth="113.0" text="Price/Cost per Unit" />
+                              <TableColumn fx:id="productIDCol" prefWidth="62.0" text="Product ID" />
+                              <TableColumn fx:id="productNameCol" prefWidth="83.0" text="Product Name" />
+                              <TableColumn fx:id="productInvlevelCol" prefWidth="91.0" text="Inventory Level" />
+                              <TableColumn fx:id="productPriceCol" prefWidth="113.0" text="Price/Cost per Unit" />
                            </columns>
                         </TableView>
                         <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="350.0" spacing="10.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Add" />
-                              <Button mnemonicParsing="false" text="Modify" />
-                              <Button layoutX="64.0" layoutY="10.0" mnemonicParsing="false" text="Delete" />
+                              <Button mnemonicParsing="false" onAction="#onActionAddProductForm" text="Add" />
+                              <Button mnemonicParsing="false" onAction="#onActionModifyProductForm" text="Modify" />
+                              <Button layoutX="64.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionDeleteProduct" text="Delete" />
                            </children>
                            <padding>
                               <Insets right="20.0" />
@@ -123,7 +124,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="49.0" prefWidth="800.0">
                <children>
-                  <Button mnemonicParsing="false" text="Exit" />
+                  <Button mnemonicParsing="false" onAction="#onActionExit" text="Exit" />
                </children>
                <padding>
                   <Insets right="100.0" />
