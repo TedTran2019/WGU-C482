@@ -1,13 +1,158 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="507.0" prefWidth="800.0" spacing="50.0">
+         <children>
+            <VBox prefHeight="507.0" prefWidth="300.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Add Product">
+                           <font>
+                              <Font name="Times New Roman Bold" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <GridPane vgap="10.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="59.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="232.0" minWidth="10.0" prefWidth="231.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label maxWidth="200.0" text="ID" />
+                              <Label maxWidth="200.0" text="Name" GridPane.rowIndex="1" />
+                              <Label maxWidth="200.0" text="Inv" GridPane.rowIndex="2" />
+                              <Label maxWidth="200.0" text="Price" GridPane.rowIndex="3" />
+                              <TextField disable="true" maxWidth="180.0" text="Auto Gen-Disabled" GridPane.columnIndex="1" />
+                              <TextField maxWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField maxWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField maxWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                           </children>
+                        </GridPane>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" prefWidth="54.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="10.0" prefWidth="109.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="83.0" minWidth="10.0" prefWidth="45.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="86.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Max" />
+                              <Label prefHeight="17.0" prefWidth="26.0" text="Min" GridPane.columnIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField maxWidth="90.0" prefHeight="26.0" prefWidth="100.0" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" />
+                                 </GridPane.margin></TextField>
+                              <TextField maxWidth="100.0" prefHeight="26.0" prefWidth="100.0" GridPane.columnIndex="3" />
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </GridPane>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="507.0" prefWidth="400.0">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="300.0">
+                     <children>
+                        <TextField promptText="Search by Part ID or Name" />
+                     </children>
+                  </HBox>
+                  <TableView prefHeight="170.0" prefWidth="400.0">
+                    <columns>
+                      <TableColumn prefWidth="72.0" text="Part ID" />
+                      <TableColumn prefWidth="88.0" text="Part Name" />
+                        <TableColumn prefWidth="119.0" text="Inventory Level" />
+                        <TableColumn prefWidth="121.0" text="Price/Cost per Unit" />
+                    </columns>
+                  </TableView>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="300.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="Add" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets right="50.0" />
+                     </padding></HBox>
+                  <TableView prefHeight="170.0" prefWidth="300.0">
+                    <columns>
+                      <TableColumn prefWidth="74.0" text="Part ID" />
+                      <TableColumn prefWidth="90.0" text="Part Name" />
+                        <TableColumn prefWidth="119.0" text="Inventory Level" />
+                        <TableColumn prefWidth="117.0" text="Price/Cost per Unit" />
+                    </columns>
+                  </TableView>
+                  <HBox prefHeight="91.0" prefWidth="400.0">
+                     <children>
+                        <VBox alignment="TOP_RIGHT" prefHeight="79.0" prefWidth="406.0">
+                           <children>
+                              <Button mnemonicParsing="false" text="Remove Associated Part" />
+                              <HBox alignment="TOP_RIGHT" prefHeight="64.0" prefWidth="141.0" spacing="50.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" text="Save" />
+                                    <Button mnemonicParsing="false" text="Cancel" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="30.0" top="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="25.0" right="25.0" />
+         </padding>
+      </HBox>
+   </children>
 </AnchorPane>
