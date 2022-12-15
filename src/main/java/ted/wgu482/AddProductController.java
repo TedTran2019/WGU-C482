@@ -155,7 +155,6 @@ public class AddProductController {
     }
 
     @FXML
-
     private void setPartTableView() {
         partTableView.setItems(Inventory.getAllParts());
         partIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));

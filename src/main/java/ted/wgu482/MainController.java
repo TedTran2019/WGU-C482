@@ -121,7 +121,19 @@ public class MainController {
 
     @FXML
     void onActionModifyProductForm(ActionEvent event) throws IOException {
-
+        if (productTableView.getSelectionModel().getSelectedItem() == null) {
+            errorBox("Product not selected", "Please select a product to modify", "Please try again");
+            return;
+        }
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("ModifyProduct.fxml"));
+        loader.load();
+        ModifyProductController modifyProductController = loader.getController();
+        modifyProductController.setProduct(productTableView.getSelectionModel().getSelectedItem());
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        root = loader.getRoot();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @FXML

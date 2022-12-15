@@ -14,8 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1"
-fx:controller="ted.wgu482.ModifyProductController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ted.wgu482.ModifyProductController">
     <children>
         <HBox prefHeight="507.0" prefWidth="800.0" spacing="50.0">
             <children>
@@ -48,10 +47,10 @@ fx:controller="ted.wgu482.ModifyProductController">
                                         <Label maxWidth="200.0" text="Name" GridPane.rowIndex="1" />
                                         <Label maxWidth="200.0" text="Inv" GridPane.rowIndex="2" />
                                         <Label maxWidth="200.0" text="Price" GridPane.rowIndex="3" />
-                                        <TextField disable="true" maxWidth="180.0" GridPane.columnIndex="1" />
-                                        <TextField maxWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                        <TextField maxWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                        <TextField maxWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                        <TextField fx:id="idTextField" disable="true" maxWidth="180.0" GridPane.columnIndex="1" />
+                                        <TextField fx:id="nameTextField" maxWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <TextField fx:id="invTextField" maxWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <TextField fx:id="priceTextField" maxWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     </children>
                                 </GridPane>
                                 <GridPane>
@@ -71,11 +70,11 @@ fx:controller="ted.wgu482.ModifyProductController">
                                                 <Insets left="5.0" />
                                             </GridPane.margin>
                                         </Label>
-                                        <TextField maxWidth="90.0" prefHeight="26.0" prefWidth="100.0" GridPane.columnIndex="1">
+                                        <TextField fx:id="maxTextField" maxWidth="90.0" prefHeight="26.0" prefWidth="100.0" GridPane.columnIndex="1">
                                             <GridPane.margin>
                                                 <Insets left="5.0" />
                                             </GridPane.margin></TextField>
-                                        <TextField maxWidth="100.0" prefHeight="26.0" prefWidth="100.0" GridPane.columnIndex="3" />
+                                        <TextField fx:id="minTextField" maxWidth="100.0" prefHeight="26.0" prefWidth="100.0" GridPane.columnIndex="3" />
                                     </children>
                                     <padding>
                                         <Insets top="10.0" />
@@ -95,20 +94,20 @@ fx:controller="ted.wgu482.ModifyProductController">
                     <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="300.0">
                             <children>
-                                <TextField promptText="Search by Part ID or Name" />
+                                <TextField fx:id="partSearchBar" promptText="Search by Part ID or Name" />
                             </children>
                         </HBox>
-                        <TableView prefHeight="170.0" prefWidth="400.0">
+                        <TableView fx:id="partTableView" prefHeight="170.0" prefWidth="400.0">
                             <columns>
-                                <TableColumn prefWidth="72.0" text="Part ID" />
-                                <TableColumn prefWidth="88.0" text="Part Name" />
-                                <TableColumn prefWidth="119.0" text="Inventory Level" />
-                                <TableColumn prefWidth="121.0" text="Price/Cost per Unit" />
+                                <TableColumn fx:id="partIDCol" prefWidth="72.0" text="Part ID" />
+                                <TableColumn fx:id="partNameCol" prefWidth="88.0" text="Part Name" />
+                                <TableColumn fx:id="invCol" prefWidth="119.0" text="Inventory Level" />
+                                <TableColumn fx:id="priceCol" prefWidth="121.0" text="Price/Cost per Unit" />
                             </columns>
                         </TableView>
                         <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="300.0">
                             <children>
-                                <Button mnemonicParsing="false" text="Add" />
+                                <Button mnemonicParsing="false" onAction="#onActionAddPart" text="Add" />
                             </children>
                             <opaqueInsets>
                                 <Insets />
@@ -119,23 +118,23 @@ fx:controller="ted.wgu482.ModifyProductController">
                             <padding>
                                 <Insets right="50.0" />
                             </padding></HBox>
-                        <TableView prefHeight="170.0" prefWidth="300.0">
+                        <TableView fx:id="associatedPartTableView" prefHeight="170.0" prefWidth="300.0">
                             <columns>
-                                <TableColumn prefWidth="74.0" text="Part ID" />
-                                <TableColumn prefWidth="90.0" text="Part Name" />
-                                <TableColumn prefWidth="119.0" text="Inventory Level" />
-                                <TableColumn prefWidth="117.0" text="Price/Cost per Unit" />
+                                <TableColumn fx:id="associatedPartIDCol" prefWidth="74.0" text="Part ID" />
+                                <TableColumn fx:id="associatedPartNameCol" prefWidth="90.0" text="Part Name" />
+                                <TableColumn fx:id="associatedInvCol" prefWidth="119.0" text="Inventory Level" />
+                                <TableColumn fx:id="associatedPriceCol" prefWidth="117.0" text="Price/Cost per Unit" />
                             </columns>
                         </TableView>
                         <HBox prefHeight="91.0" prefWidth="400.0">
                             <children>
                                 <VBox alignment="TOP_RIGHT" prefHeight="79.0" prefWidth="406.0">
                                     <children>
-                                        <Button mnemonicParsing="false" text="Remove Associated Part" />
+                                        <Button mnemonicParsing="false" onAction="#onActionRemoveAssociatedPart" text="Remove Associated Part" />
                                         <HBox alignment="TOP_RIGHT" prefHeight="64.0" prefWidth="141.0" spacing="50.0">
                                             <children>
-                                                <Button mnemonicParsing="false" text="Save" />
-                                                <Button mnemonicParsing="false" text="Cancel" />
+                                                <Button mnemonicParsing="false" onAction="#onActionSave" text="Save" />
+                                                <Button mnemonicParsing="false" onAction="#onActionMain" text="Cancel" />
                                             </children>
                                             <padding>
                                                 <Insets top="10.0" />
