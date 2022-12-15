@@ -1,4 +1,4 @@
-package ted.wgu482.model;
+package examples;
 
 public abstract class Animal {
     private Integer id;

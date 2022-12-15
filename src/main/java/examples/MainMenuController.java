@@ -1,4 +1,4 @@
-package ted.wgu482;
+package examples;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

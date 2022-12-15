@@ -1,4 +1,4 @@
-package ted.wgu482;
+package examples;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,8 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import ted.wgu482.model.Dog;
-import ted.wgu482.model.DataProvider;
+import examples.Dog;
+import examples.DataProvider;
 
 import java.io.IOException;
 import java.util.Optional;

@@ -1,5 +1,6 @@
-package ted.wgu482;
+package examples;
 
+import examples.AnimalDetailsMenuController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,9 +13,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import ted.wgu482.model.Animal;
-import ted.wgu482.model.DataProvider;
-import ted.wgu482.model.Dog;
+import examples.Animal;
+import examples.DataProvider;
 
 import java.io.IOException;
 

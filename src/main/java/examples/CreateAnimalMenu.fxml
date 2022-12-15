@@ -15,7 +15,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/null"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="ted.wgu482.CreateAnimalMenuController">
+            fx:controller="examples.CreateAnimalMenuController">
    <children>
       <VBox layoutY="-1.0" prefHeight="300.0" prefWidth="400.0">
          <children>

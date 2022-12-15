@@ -1,4 +1,6 @@
-package ted.wgu482.model;
+package examples;
+
+import examples.Animal;
 
 public class Dog extends Animal {
     private String special;

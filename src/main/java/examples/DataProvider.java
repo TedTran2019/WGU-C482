@@ -1,5 +1,6 @@
-package ted.wgu482.model;
+package examples;
 
+import examples.Animal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
