@@ -59,28 +59,42 @@ public class MainController {
 
     @FXML
     void onActionAddPartForm(ActionEvent event) throws IOException {
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("AddPart.fxml"));
-        stage.setScene(new Scene(root));
-        stage.show();
+        switchScene(event, "AddPart.fxml");
     }
 
     @FXML
     void onActionAddProductForm(ActionEvent event) throws IOException {
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("AddProduct.fxml"));
-        stage.setScene(new Scene(root));
-        stage.show();
+        switchScene(event, "AddProduct.fxml");
     }
 
     @FXML
     void onActionDeletePart(ActionEvent event) {
+        if (partTableView.getSelectionModel().getSelectedItem() == null) {
+            errorBox("Part not selected", "Please select a part to delete", "Please try again");
+            return;
+        }
+        Part part = partTableView.getSelectionModel().getSelectedItem();
 
+        if (!Inventory.deletePart(part)) {
+            errorBox("Part not deleted", "Part couldn't be deleted", "Please try again");
+        } else {
+            partTableView.getSelectionModel().clearSelection();
+        }
     }
 
     @FXML
     void onActionDeleteProduct(ActionEvent event) {
+        if (productTableView.getSelectionModel().getSelectedItem() == null) {
+            errorBox("Product not selected", "Please select a product to delete", "Please try again");
+            return;
+        }
+        Product product = productTableView.getSelectionModel().getSelectedItem();
 
+        if (!Inventory.deleteProduct(product)) {
+            errorBox("Product not deleted", "Product couldn't be deleted", "Please try again");
+        } else {
+            productTableView.getSelectionModel().clearSelection();
+        }
     }
 
     @FXML
@@ -90,11 +104,31 @@ public class MainController {
 
     @FXML
     void onActionModifyPartForm(ActionEvent event) throws IOException {
+        if (partTableView.getSelectionModel().getSelectedItem() == null) {
+            return;
+        }
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("ModifyPart.fxml"));
+        loader.load();
+//        AnimalDetailsMenuController animalDetailsMenuController = loader.getController();
+//        animalDetailsMenuController.setAnimal(tableView.getSelectionModel().getSelectedItem());
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        root = loader.getRoot();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @FXML
-    void onActionModifyProductForm(ActionEvent event) {
+    void onActionModifyProductForm(ActionEvent event) throws IOException {
 
+    }
+
+    @FXML
+    private void switchScene(ActionEvent event, String sceneName) throws IOException {
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource(sceneName));
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @FXML
@@ -118,6 +152,7 @@ public class MainController {
         partSearch.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
                 partTableView.getSelectionModel().clearSelection();
+                partTableView.setItems(Inventory.getAllParts());
                 return;
             }
 
@@ -144,6 +179,7 @@ public class MainController {
         productSearch.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
                 productTableView.getSelectionModel().clearSelection();
+                productTableView.setItems(Inventory.getAllProducts());
                 return;
             }
 
