@@ -105,13 +105,14 @@ public class MainController {
     @FXML
     void onActionModifyPartForm(ActionEvent event) throws IOException {
         if (partTableView.getSelectionModel().getSelectedItem() == null) {
+            errorBox("Part not selected", "Please select a part to modify", "Please try again");
             return;
         }
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("ModifyPart.fxml"));
         loader.load();
-//        AnimalDetailsMenuController animalDetailsMenuController = loader.getController();
-//        animalDetailsMenuController.setAnimal(tableView.getSelectionModel().getSelectedItem());
+        ModifyPartController modifyPartController = loader.getController();
+        modifyPartController.setPart(partTableView.getSelectionModel().getSelectedItem());
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
         root = loader.getRoot();
         stage.setScene(new Scene(root));
