@@ -99,12 +99,19 @@ public class AddProductController {
             errorBox("No part selected", "Select a part to remove", "Please try again");
             return;
         }
+        if (confirmBox("Remove associated part", "Are you sure you want to remove this part?", "Proceed carefully!")) {
+            return;
+        }
         associatedParts.remove(part);
     }
 
     @FXML
     private boolean logicalErrors(Double price, int inv, int min, int max) {
-        if (inv < min || inv > max) {
+        if (min >= max) {
+            errorBox("Error", "Max has to be greater than min", "Please correct the values and try again");
+            return true;
+        }
+        else if (inv < min || inv > max) {
             errorBox("Error", "Inventory Error", "Inventory must be between min and max");
             return true;
         } else if (price < 0) {
@@ -197,6 +204,16 @@ public class AddProductController {
                 }
             }
         });
+    }
+
+    @FXML
+    private boolean confirmBox(String title, String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+        return alert.getResult() == ButtonType.CANCEL;
     }
 
     @FXML

@@ -74,6 +74,9 @@ public class MainController {
             return;
         }
         Part part = partTableView.getSelectionModel().getSelectedItem();
+        if (confirmBox("Delete Part", "Are you sure you want to delete " + part.getName() + "?", "This action cannot be undone.")) {
+            return;
+        }
 
         if (!Inventory.deletePart(part)) {
             errorBox("Part not deleted", "Part couldn't be deleted", "Please try again");
@@ -89,8 +92,14 @@ public class MainController {
             return;
         }
         Product product = productTableView.getSelectionModel().getSelectedItem();
+        if (confirmBox("Delete Product", "Are you sure you want to delete product " + product.getName() + "?", "This action cannot be undone.")) {
+            return;
+        }
 
-        if (!Inventory.deleteProduct(product)) {
+        if (!product.getAllAssociatedParts().isEmpty()) {
+            errorBox("Product not deleted", "Product has associated parts", "Please remove associated parts and try again");
+        }
+        else if (!Inventory.deleteProduct(product)) {
             errorBox("Product not deleted", "Product couldn't be deleted", "Please try again");
         } else {
             productTableView.getSelectionModel().clearSelection();
@@ -212,6 +221,16 @@ public class MainController {
                 }
             }
         });
+    }
+
+    @FXML
+    private boolean confirmBox(String title, String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+        return alert.getResult() == ButtonType.CANCEL;
     }
 
     @FXML

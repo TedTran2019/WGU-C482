@@ -68,7 +68,11 @@ public class ModifyPartController {
     }
 
     private boolean logicalErrors(Double price, int inv, int min, int max) {
-        if (inv < min || inv > max) {
+        if (min >= max) {
+            errorBox("Error", "Max has to be greater than min", "Please correct the values and try again");
+            return true;
+        }
+        else if (inv < min || inv > max) {
             errorBox("Error", "Inventory Error", "Inventory must be between min and max");
             return true;
         } else if (price < 0) {
