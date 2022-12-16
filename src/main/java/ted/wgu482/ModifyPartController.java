@@ -123,6 +123,10 @@ public class ModifyPartController {
 
     @FXML
     /**
+     * RUNTIME ERROR - I originally tried to just modify the existing part, but that didn't work since there are
+     * two different types of parts. I fixed this issue by just creating an entirely new part and using it to replace
+     * the old part.
+     *
      * @param event
      * This method is called when the user clicks on the 'Save' button.
      * It saves the part and returns the user to the main screen.
