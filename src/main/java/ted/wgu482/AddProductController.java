@@ -75,6 +75,13 @@ public class AddProductController {
 
 
     @FXML
+    /**
+     * @param event
+     * This method is called when the user clicks the "Add" button.
+     * It adds the selected part to the associated parts table.
+     * If no part is selected, it displays an error message.
+     * If the part is already associated with the product, it displays an error message.
+     */
     void onActionAddPart(ActionEvent event) {
         Part part = partTableView.getSelectionModel().getSelectedItem();
         if (part == null) {
@@ -88,11 +95,22 @@ public class AddProductController {
     }
 
     @FXML
+    /**
+     * @param event
+     * This method is called when the user clicks on the 'Cancel' button.
+     * It returns the user to the main screen.
+     */
     void onActionMain(ActionEvent event) throws IOException {
         switchScene(event, "Main.fxml");
     }
 
     @FXML
+    /**
+     * @param event
+     * This method is called when the user clicks the "Remove Associated Part" button.
+     * It removes the selected part from the associated parts table after displaying a confirmation message.
+     * If no part is selected, it displays an error message.
+     */
     void onActionRemoveAssociatedPart(ActionEvent event) {
         Part part = associatedPartTableView.getSelectionModel().getSelectedItem();
         if (part == null) {
@@ -106,6 +124,14 @@ public class AddProductController {
     }
 
     @FXML
+    /**
+     * @param price The price to be validated
+     * @param min The minimum value to be validated
+     * @param max The maximum value to be validated
+     * @param inv The inventory amount to be validated
+     * @returns true if there is a logical error, false otherwise
+     * This method checks if max is greater than min, if price is positive, and if inv is between min and max.
+     */
     private boolean logicalErrors(Double price, int inv, int min, int max) {
         if (min >= max) {
             errorBox("Error", "Max has to be greater than min", "Please correct the values and try again");
@@ -122,6 +148,12 @@ public class AddProductController {
     }
 
     @FXML
+    /**
+     * @param event
+     * This method is called when the user clicks on the 'Save' button.
+     * It saves the product and returns the user to the main screen.
+     * If the product is invalid, it displays an error.
+     */
     void onActionSave(ActionEvent event) {
         try {
             double price = Double.parseDouble(priceTextField.getText());
@@ -145,6 +177,12 @@ public class AddProductController {
     }
 
     @FXML
+    /**
+     * @param title The title of the error box
+     * @param header The header of the error box
+     * @param content The content of the error box
+     * It displays an error box with the given title, header, and content.
+     */
     private void errorBox(String title, String header, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -154,6 +192,11 @@ public class AddProductController {
     }
 
     @FXML
+    /**
+     * @param event
+     * @param sceneName The name (fxml filename) of the scene to load
+     * This method loads the scene specified by sceneName.
+     */
     private void switchScene(ActionEvent event, String sceneName) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
         root = FXMLLoader.load(getClass().getResource(sceneName));
@@ -162,6 +205,9 @@ public class AddProductController {
     }
 
     @FXML
+    /**
+     * Prepares the part table
+     * */
     private void setPartTableView() {
         partTableView.setItems(Inventory.getAllParts());
         partIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -171,6 +217,9 @@ public class AddProductController {
     }
 
     @FXML
+    /**
+     * Prepares the associated part table
+     * */
     private void setAssociatedPartTableView() {
         associatedPartTableView.setItems(associatedParts);
         associatedPartIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -180,6 +229,13 @@ public class AddProductController {
     }
 
     @FXML
+    /**
+     * This method sets up the listeners for the parts search bar.
+     * It selects a specific part with the given ID if the search bar contains only numbers.
+     * Otherwise, it filters the parts table by the search bar text.
+     * If the search bar is empty, it displays all parts.
+     * If the search bar text doesn't match any part, it displays an error message.
+     */
     private void setPartSearchListener() {
         partSearchBar.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
@@ -207,6 +263,13 @@ public class AddProductController {
     }
 
     @FXML
+    /**
+     * @param title The title of the error box
+     * @param header The header of the error box
+     * @param content The content of the error box
+     * @returns true if the user clicks cancel, false otherwise
+     * It displays a confirmation box with the given title, header, and content.
+     */
     private boolean confirmBox(String title, String header, String content) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(title);
@@ -217,6 +280,9 @@ public class AddProductController {
     }
 
     @FXML
+    /**
+     * Sets up tables and listeners
+     * */
     public void initialize() {
         setPartTableView();
         setAssociatedPartTableView();
