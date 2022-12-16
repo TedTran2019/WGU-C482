@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"ted.wgu482","l":"examples"},{"m":"ted.wgu482","l":"ted.wgu482"},{"m":"ted.wgu482","l":"ted.wgu482.model"}];updateSearchResults();

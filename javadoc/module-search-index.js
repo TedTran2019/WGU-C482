@@ -1,0 +1,1 @@
+moduleSearchIndex = [{"l":"ted.wgu482"}];updateSearchResults();
