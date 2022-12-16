@@ -10,6 +10,9 @@ import java.io.IOException;
 
 public class HelloApplication extends Application {
     @Override
+    /**
+     * Main entry point for the application. Sets up the stage and loads the Main scene.
+     */
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Main.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -17,6 +20,10 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
+    /**
+     * @param args the command line arguments
+     * launches the application
+     */
     public static void main(String[] args) {
         launch();
     }

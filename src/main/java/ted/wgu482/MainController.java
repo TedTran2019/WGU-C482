@@ -58,16 +58,32 @@ public class MainController {
     Parent root;
 
     @FXML
+    /**
+     * @param event
+     * This method is called when the user clicks the Add button in the Parts section.
+     * It loads the AddPart scene.
+     */
     void onActionAddPartForm(ActionEvent event) throws IOException {
         switchScene(event, "AddPart.fxml");
     }
 
     @FXML
+    /**
+     * @param event
+     * This method is called when the user clicks the Modify button in the Parts section.
+     * It loads the ModifyPart scene.
+     */
     void onActionAddProductForm(ActionEvent event) throws IOException {
         switchScene(event, "AddProduct.fxml");
     }
 
     @FXML
+    /**
+     * @param event
+     * This method is called when the user clicks the Delete button in the Parts section.
+     * It deletes the selected part from the inventory if a part is selected.
+     * It displays an error message if no part is selected.
+     */
     void onActionDeletePart(ActionEvent event) {
         if (partTableView.getSelectionModel().getSelectedItem() == null) {
             errorBox("Part not selected", "Please select a part to delete", "Please try again");
@@ -86,6 +102,12 @@ public class MainController {
     }
 
     @FXML
+    /**
+     * @param event
+     * This method is called when the user clicks the Delete button in the Products section.
+     * It deletes the selected product from the inventory if a product is selected.
+     * It displays an error message if no product is selected or if the product has associated parts.
+     */
     void onActionDeleteProduct(ActionEvent event) {
         if (productTableView.getSelectionModel().getSelectedItem() == null) {
             errorBox("Product not selected", "Please select a product to delete", "Please try again");
@@ -107,11 +129,21 @@ public class MainController {
     }
 
     @FXML
+    /**
+     * @param event
+     * This method is called when the user clicks the Exit button.
+     * It exits the application.
+     */
     void onActionExit(ActionEvent event) {
         System.exit(0);
     }
 
     @FXML
+    /**
+     * @param event
+     * This method is called when the user clicks the Modify button in the Parts section.
+     * It loads the ModifyPart scene.
+     */
     void onActionModifyPartForm(ActionEvent event) throws IOException {
         if (partTableView.getSelectionModel().getSelectedItem() == null) {
             errorBox("Part not selected", "Please select a part to modify", "Please try again");
@@ -129,6 +161,11 @@ public class MainController {
     }
 
     @FXML
+    /**
+     * @param event
+     * This method is called when the user clicks the Modify button in the Products section.
+     * It loads the ModifyProduct scene.
+     */
     void onActionModifyProductForm(ActionEvent event) throws IOException {
         if (productTableView.getSelectionModel().getSelectedItem() == null) {
             errorBox("Product not selected", "Please select a product to modify", "Please try again");
@@ -146,6 +183,11 @@ public class MainController {
     }
 
     @FXML
+    /**
+     * @param event
+     * @param sceneName The name (fxml filename) of the scene to load
+     * This method loads the scene specified by sceneName.
+     */
     private void switchScene(ActionEvent event, String sceneName) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
         root = FXMLLoader.load(getClass().getResource(sceneName));
@@ -154,6 +196,9 @@ public class MainController {
     }
 
     @FXML
+    /**
+     * This method sets the columns of the Parts table.
+     */
     private void setPartTableCols() {
         partIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -162,6 +207,9 @@ public class MainController {
     }
 
     @FXML
+    /**
+     * This method sets the columns of the Products table.
+     */
     private void setProductTableCols() {
         productIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         productNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -170,6 +218,13 @@ public class MainController {
     }
 
     @FXML
+    /**
+     * This method sets up the listeners for the parts search bar.
+     * It selects a specific part with the given ID if the search bar contains only numbers.
+     * Otherwise, it filters the parts table by the search bar text.
+     * If the search bar is empty, it displays all parts.
+     * If the search bar text doesn't match any part, it displays an error message.
+     */
     private void setPartSearchListener() {
         partSearch.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
@@ -197,6 +252,13 @@ public class MainController {
     }
 
     @FXML
+    /**
+     * This method sets up the listeners for the products search bar.
+     * It selects a specific product with the given ID if the search bar contains only numbers.
+     * Otherwise, it filters the products table by the search bar text.
+     * If the search bar is empty, it displays all products.
+     * If the search bar text doesn't match any product, it displays an error message.
+     */
     private void setProductSearchListener() {
         productSearch.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
@@ -224,6 +286,13 @@ public class MainController {
     }
 
     @FXML
+    /**
+     * @param title The title of the error box
+     * @param header The header of the error box
+     * @param content The content of the error box
+     * @returns true if the user clicks cancel, false otherwise
+     * It displays a confirmation box with the given title, header, and content.
+     */
     private boolean confirmBox(String title, String header, String content) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(title);
@@ -234,6 +303,12 @@ public class MainController {
     }
 
     @FXML
+    /**
+     * @param title The title of the error box
+     * @param header The header of the error box
+     * @param content The content of the error box
+     * It displays an error box with the given title, header, and content.
+     */
     private void errorBox(String title, String header, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -243,12 +318,18 @@ public class MainController {
     }
 
     @FXML
+    /**
+     * Sets up listeners for the parts search bar and products search bar.
+     * */
     private void setListeners() {
         setPartSearchListener();
         setProductSearchListener();
     }
 
     @FXML
+    /**
+     * Prepares tables and sets up the listeners.
+     */
     public void initialize() {
         partTableView.setItems(Inventory.getAllParts());
         setPartTableCols();

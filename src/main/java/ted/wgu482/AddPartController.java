@@ -52,21 +52,42 @@ public class AddPartController {
     Parent root;
 
     @FXML
+    /**
+     * @param event
+     * This method is called when the user clicks on the 'In-House' radio button.
+     * It changes the label to 'Machine ID'.
+     */
     void onActionInHouse(ActionEvent event) {
         MIDorCNameLabel.setText("Machine ID");
     }
 
     @FXML
+    /**
+     * @param event
+     * This method is called when the user clicks on the 'Outsourced' radio button.
+     * It changes the label to 'Company Name'.
+     */
     void onActionOutsourced(ActionEvent event) {
         MIDorCNameLabel.setText("Company Name");
     }
 
     @FXML
+    /**
+     * @param event
+     * This method is called when the user clicks on the 'Cancel' button.
+     * It returns the user to the main screen.
+     */
     void onActionMain(ActionEvent event) throws IOException {
         switchScene(event, "Main.fxml");
     }
 
     @FXML
+    /**
+     * @param title The title of the error box
+     * @param header The header of the error box
+     * @param content The content of the error box
+     * It displays an error box with the given title, header, and content.
+     */
     private void errorBox(String title, String header, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -76,6 +97,14 @@ public class AddPartController {
     }
 
     @FXML
+    /**
+     * @param price The price to be validated
+     * @param min The minimum value to be validated
+     * @param max The maximum value to be validated
+     * @param inv The inventory amount to be validated
+     * @returns true if there is a logical error, false otherwise
+     * This method checks if max is greater than min, if price is positive, and if inv is between min and max.
+     */
     private boolean logicalErrors(Double price, int inv, int min, int max) {
         if (min >= max) {
             errorBox("Error", "Max has to be greater than min", "Please correct the values and try again");
@@ -92,6 +121,12 @@ public class AddPartController {
     }
 
     @FXML
+    /**
+     * @param event
+     * This method is called when the user clicks on the 'Save' button.
+     * It saves the part and returns the user to the main screen.
+     * If the part is invalid, it displays an error.
+     */
     void onActionSave(ActionEvent event) {
         try {
             double price = Double.parseDouble(priceTextField.getText());
@@ -120,6 +155,11 @@ public class AddPartController {
     }
 
     @FXML
+    /**
+     * @param event
+     * @param sceneName The name (fxml filename) of the scene to load
+     * This method loads the scene specified by sceneName.
+     */
     private void switchScene(ActionEvent event, String sceneName) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
         root = FXMLLoader.load(getClass().getResource(sceneName));
