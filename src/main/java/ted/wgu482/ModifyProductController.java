@@ -14,65 +14,10 @@ import ted.wgu482.model.*;
 
 import java.io.IOException;
 
-public class ModifyProductController {
-
-    @FXML
-    private TableColumn<Part, Integer> associatedInvCol;
-
-    @FXML
-    private TableColumn<Part, Integer> associatedPartIDCol;
-
-    @FXML
-    private TableView<Part> associatedPartTableView;
-
-    @FXML
-    private TableColumn<Part, Double> associatedPriceCol;
-
+public class ModifyProductController extends ProductsController {
     @FXML
     private TextField idTextField;
-
-    @FXML
-    private TableColumn<Part, Integer> invCol;
-
-    @FXML
-    private TextField invTextField;
-
-    @FXML
-    private TextField maxTextField;
-
-    @FXML
-    private TextField minTextField;
-
-    @FXML
-    private TextField nameTextField;
-
-    @FXML
-    private TableColumn<Part, Integer> partIDCol;
-
-    @FXML
-    private TableColumn<Part, String> partNameCol;
-
-    @FXML
-    private TableColumn<Part, String> associatedPartNameCol;
-
-    @FXML
-    private TextField partSearchBar;
-
-    @FXML
-    private TableView<Part> partTableView;
-
-    @FXML
-    private TableColumn<Part, Double> priceCol;
-
-    @FXML
-    private TextField priceTextField;
-
-    @FXML
-    private ObservableList<Part> associatedParts = null;
-
-    Stage stage;
-    Parent root;
-
+    
     @FXML
     /**
      * @param event
@@ -210,51 +155,6 @@ public class ModifyProductController {
         setPartTableView();
         setAssociatedPartTableView();
         setPartSearchListener();
-    }
-
-    @FXML
-    /**
-     * @param event
-     * @param sceneName The name (fxml filename) of the scene to load
-     * This method loads the scene specified by sceneName.
-     */
-    private void switchScene(ActionEvent event, String sceneName) throws IOException {
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource(sceneName));
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
-
-    @FXML
-    /**
-     * @param title The title of the error box
-     * @param header The header of the error box
-     * @param content The content of the error box
-     * It displays an error box with the given title, header, and content.
-     */
-    private void errorBox(String title, String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
-
-    @FXML
-    /**
-     * @param title The title of the error box
-     * @param header The header of the error box
-     * @param content The content of the error box
-     * @returns true if the user clicks cancel, false otherwise
-     * It displays a confirmation box with the given title, header, and content.
-     */
-    private boolean confirmBox(String title, String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-        alert.showAndWait();
-        return alert.getResult() == ButtonType.CANCEL;
     }
 
     @FXML

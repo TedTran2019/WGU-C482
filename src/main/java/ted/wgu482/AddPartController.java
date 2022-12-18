@@ -14,42 +14,9 @@ import ted.wgu482.model.Part;
 
 import java.io.IOException;
 
-public class AddPartController {
+public class AddPartController extends PartsController {
     @FXML
     private static int idCounter = 1;
-
-    @FXML
-    private Label MIDorCNameLabel;
-
-    @FXML
-    private TextField MIDorCNameTextField;
-
-    @FXML
-    private RadioButton inHouseRBtn;
-
-    @FXML
-    private TextField invTextField;
-
-    @FXML
-    private TextField maxTextField;
-
-    @FXML
-    private TextField minTextField;
-
-    @FXML
-    private TextField nameTextField;
-
-    @FXML
-    private RadioButton outsourcedRBtn;
-
-    @FXML
-    private ToggleGroup partType;
-
-    @FXML
-    private TextField priceTextField;
-
-    Stage stage;
-    Parent root;
 
     @FXML
     /**
@@ -79,21 +46,6 @@ public class AddPartController {
      */
     void onActionMain(ActionEvent event) throws IOException {
         switchScene(event, "Main.fxml");
-    }
-
-    @FXML
-    /**
-     * @param title The title of the error box
-     * @param header The header of the error box
-     * @param content The content of the error box
-     * It displays an error box with the given title, header, and content.
-     */
-    private void errorBox(String title, String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-        alert.showAndWait();
     }
 
     @FXML
@@ -152,18 +104,5 @@ public class AddPartController {
         } catch (Exception e) {
             errorBox("Error", e.getMessage(), "Please enter valid data");
         }
-    }
-
-    @FXML
-    /**
-     * @param event
-     * @param sceneName The name (fxml filename) of the scene to load
-     * This method loads the scene specified by sceneName.
-     */
-    private void switchScene(ActionEvent event, String sceneName) throws IOException {
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource(sceneName));
-        stage.setScene(new Scene(root));
-        stage.show();
     }
 }
