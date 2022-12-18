@@ -1,5 +1,6 @@
 package ted.wgu482;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -36,4 +37,24 @@ public abstract class PartsController extends BaseController {
 
     @FXML
     protected TextField priceTextField;
+
+    @FXML
+    /**
+     * @param event
+     * This method is called when the user clicks on the 'In-House' radio button.
+     * It changes the label to 'Machine ID'.
+     */
+    protected void onActionInHouse(ActionEvent event) {
+        MIDorCNameLabel.setText("Machine ID");
+    }
+
+    @FXML
+    /**
+     * @param event
+     * This method is called when the user clicks on the 'Outsourced' radio button.
+     * It changes the label to 'Company Name'.
+     */
+    protected void onActionOutsourced(ActionEvent event) {
+        MIDorCNameLabel.setText("Company Name");
+    }
 }

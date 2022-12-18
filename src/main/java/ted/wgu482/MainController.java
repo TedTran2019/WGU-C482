@@ -77,6 +77,16 @@ public class MainController extends BaseController {
     @FXML
     /**
      * @param event
+     * This method is called when the user clicks the Exit button.
+     * It exits the application.
+     */
+    void onActionExit(ActionEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
+    /**
+     * @param event
      * This method is called when the user clicks the Delete button in the Parts section.
      * It deletes the selected part from the inventory if a part is selected.
      * It displays an error message if no part is selected.
@@ -123,16 +133,6 @@ public class MainController extends BaseController {
         } else {
             productTableView.getSelectionModel().clearSelection();
         }
-    }
-
-    @FXML
-    /**
-     * @param event
-     * This method is called when the user clicks the Exit button.
-     * It exits the application.
-     */
-    void onActionExit(ActionEvent event) {
-        System.exit(0);
     }
 
     @FXML

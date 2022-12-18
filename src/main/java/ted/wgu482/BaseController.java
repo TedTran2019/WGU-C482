@@ -31,6 +31,16 @@ public abstract class BaseController {
 
     @FXML
     /**
+     * @param event
+     * This method is called when the user clicks on the 'Cancel' button.
+     * It returns the user to the main screen.
+     */
+    protected void onActionMain(ActionEvent event) throws IOException {
+        switchScene(event, "Main.fxml");
+    }
+
+    @FXML
+    /**
      * @param title The title of the error box
      * @param header The header of the error box
      * @param content The content of the error box
@@ -59,5 +69,29 @@ public abstract class BaseController {
         alert.setContentText(content);
         alert.showAndWait();
         return alert.getResult() == ButtonType.CANCEL;
+    }
+
+    @FXML
+    /**
+     * @param price The price to be validated
+     * @param min The minimum value to be validated
+     * @param max The maximum value to be validated
+     * @param inv The inventory amount to be validated
+     * @returns true if there is a logical error, false otherwise
+     * This method checks if max is greater than min, if price is positive, and if inv is between min and max.
+     */
+    protected boolean logicalErrors(Double price, int inv, int min, int max) {
+        if (min >= max) {
+            errorBox("Error", "Max has to be greater than min", "Please correct the values and try again");
+            return true;
+        }
+        else if (inv < min || inv > max) {
+            errorBox("Error", "Inventory Error", "Inventory must be between min and max");
+            return true;
+        } else if (price < 0) {
+            errorBox("Error", "Price Error", "Price can't be negative");
+            return true;
+        }
+        return false;
     }
 }

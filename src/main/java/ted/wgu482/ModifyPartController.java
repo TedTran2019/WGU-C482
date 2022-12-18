@@ -21,60 +21,6 @@ public class ModifyPartController extends PartsController {
 
     @FXML
     /**
-     * @param event
-     * This method is called when the user clicks on the 'In-House' radio button.
-     * It changes the label to 'Machine ID'.
-     */
-    void onActionInHouse(ActionEvent event) {
-        MIDorCNameLabel.setText("Machine ID");
-    }
-
-    @FXML
-    /**
-     * @param event
-     * This method is called when the user clicks on the 'Outsourced' radio button.
-     * It changes the label to 'Company Name'.
-     */
-    void onActionOutsourced(ActionEvent event) {
-        MIDorCNameLabel.setText("Company Name");
-    }
-
-    @FXML
-    /**
-     * @param event
-     * This method is called when the user clicks on the 'Cancel' button.
-     * It returns the user to the main screen.
-     */
-    void onActionMain(ActionEvent event) throws IOException {
-        switchScene(event, "Main.fxml");
-    }
-
-    @FXML
-    /**
-     * @param price The price to be validated
-     * @param min The minimum value to be validated
-     * @param max The maximum value to be validated
-     * @param inv The inventory amount to be validated
-     * @returns true if there is a logical error, false otherwise
-     * This method checks if max is greater than min, if price is positive, and if inv is between min and max.
-     */
-    private boolean logicalErrors(Double price, int inv, int min, int max) {
-        if (min >= max) {
-            errorBox("Error", "Max has to be greater than min", "Please correct the values and try again");
-            return true;
-        }
-        else if (inv < min || inv > max) {
-            errorBox("Error", "Inventory Error", "Inventory must be between min and max");
-            return true;
-        } else if (price < 0) {
-            errorBox("Error", "Price Error", "Price can't be negative");
-            return true;
-        }
-        return false;
-    }
-
-    @FXML
-    /**
      * RUNTIME ERROR - I originally tried to just modify the existing part, but that didn't work since there are
      * two different types of parts. I fixed this issue by just creating an entirely new part and using it to replace
      * the old part.
