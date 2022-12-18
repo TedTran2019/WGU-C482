@@ -18,13 +18,13 @@ public class ModifyProductController extends ProductsController {
     @FXML
     private TextField idTextField;
 
-    @FXML
     /**
-     * @param event
      * This method is called when the user clicks on the 'Save' button.
      * It saves the product and returns the user to the main screen.
      * If the product is invalid, it displays an error.
+     * @param event
      */
+    @FXML
     void onActionSave(ActionEvent event) {
         try {
             int id = Integer.parseInt(idTextField.getText());
@@ -47,12 +47,12 @@ public class ModifyProductController extends ProductsController {
         }
     }
 
-    @FXML
     /**
+     * Replaces the old product found by ID with the new product
      * @param newProduct the product to replace the old product
      * @param id the id of the product to replace
-     * Replaces the old product found by ID with the new product
      */
+    @FXML
     private void updateProductInList(Product newProduct, int id) {
         int idx = 0;
         for (Product product: Inventory.getAllProducts()) {
@@ -64,12 +64,12 @@ public class ModifyProductController extends ProductsController {
         }
     }
 
-    @FXML
     /**
-     * @param product product to be modified
      * Sets text fields to the product's values
      * Prepares tables and sets up listener for search bar
+     * @param product product to be modified
      */
+    @FXML
     void setProduct(Product product) {
         idTextField.setText(Integer.toString(product.getId()));
         nameTextField.setText(product.getName());

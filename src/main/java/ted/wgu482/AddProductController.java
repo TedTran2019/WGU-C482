@@ -22,13 +22,13 @@ public class AddProductController extends ProductsController {
     @FXML
     private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
 
-    @FXML
     /**
-     * @param event
      * This method is called when the user clicks on the 'Save' button.
      * It saves the product and returns the user to the main screen.
      * If the product is invalid, it displays an error.
+     * @param event
      */
+    @FXML
     void onActionSave(ActionEvent event) {
         try {
             double price = Double.parseDouble(priceTextField.getText());
@@ -51,10 +51,10 @@ public class AddProductController extends ProductsController {
         }
     }
 
-    @FXML
     /**
      * Sets up tables and listeners
      * */
+    @FXML
     public void initialize() {
         setPartsTableView(partTableView, Inventory.getAllParts(), partIDCol, partNameCol, invCol, priceCol);
         setPartsTableView(associatedPartTableView, associatedParts, associatedPartIDCol, associatedPartNameCol, associatedInvCol, associatedPriceCol);

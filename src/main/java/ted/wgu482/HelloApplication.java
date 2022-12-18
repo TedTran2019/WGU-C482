@@ -13,10 +13,10 @@ import java.io.IOException;
  * Customers would be able to buy products from the inventory, and the inventory would be able to track the number of products sold.
  * */
 public class HelloApplication extends Application {
-    @Override
     /**
      * Main entry point for the application. Sets up the stage and loads the Main scene.
      */
+    @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Main.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -25,10 +25,10 @@ public class HelloApplication extends Application {
     }
 
     /**
-     * @param args the command line arguments
      * Launches the application
      *
      * javadoc folder is located in the root directory of the project
+     * @param args the command line arguments
      */
     public static void main(String[] args) {
         launch();

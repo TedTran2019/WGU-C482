@@ -18,12 +18,12 @@ public abstract class BaseController {
     protected Stage stage;
     protected Parent root;
 
-    @FXML
     /**
+     * This method loads the scene specified by sceneName.
      * @param event
      * @param sceneName The name (fxml filename) of the scene to load
-     * This method loads the scene specified by sceneName.
      */
+    @FXML
     protected void switchScene(ActionEvent event, String sceneName) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
         root = FXMLLoader.load(getClass().getResource(sceneName));
@@ -31,23 +31,23 @@ public abstract class BaseController {
         stage.show();
     }
 
-    @FXML
     /**
-     * @param event
      * This method is called when the user clicks on the 'Cancel' button.
      * It returns the user to the main screen.
+     * @param event
      */
+    @FXML
     protected void onActionMain(ActionEvent event) throws IOException {
         switchScene(event, "Main.fxml");
     }
 
-    @FXML
     /**
+     * It displays an error box with the given title, header, and content.
      * @param title The title of the error box
      * @param header The header of the error box
      * @param content The content of the error box
-     * It displays an error box with the given title, header, and content.
      */
+    @FXML
     protected void errorBox(String title, String header, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -56,14 +56,14 @@ public abstract class BaseController {
         alert.showAndWait();
     }
 
-    @FXML
     /**
+     * It displays a confirmation box with the given title, header, and content.
      * @param title The title of the error box
      * @param header The header of the error box
      * @param content The content of the error box
-     * @returns true if the user clicks cancel, false otherwise
-     * It displays a confirmation box with the given title, header, and content.
+     * @return true if the user clicks cancel, false otherwise
      */
+    @FXML
     protected boolean confirmBox(String title, String header, String content) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(title);
@@ -73,15 +73,15 @@ public abstract class BaseController {
         return alert.getResult() == ButtonType.CANCEL;
     }
 
-    @FXML
     /**
+     * This method checks if max is greater than min, if price is positive, and if inv is between min and max.
      * @param price The price to be validated
      * @param min The minimum value to be validated
      * @param max The maximum value to be validated
      * @param inv The inventory amount to be validated
-     * @returns true if there is a logical error, false otherwise
-     * This method checks if max is greater than min, if price is positive, and if inv is between min and max.
+     * @return true if there is a logical error, false otherwise
      */
+    @FXML
     protected boolean logicalErrors(Double price, int inv, int min, int max) {
         if (min >= max) {
             errorBox("Error", "Max has to be greater than min", "Please correct the values and try again");
@@ -98,14 +98,15 @@ public abstract class BaseController {
     }
 
     /**
+     * This sets a parts table view with the given columns.
      * @param tableView The table to be populated
      * @param parts The list of parts to be added to the table
      * @param id The id column
      * @param name The name column
      * @param inv The stock column
      * @param price The price column
-     * This sets a parts table view with the given columns.
      */
+    @FXML
     protected void setPartsTableView(TableView<Part> tableView, ObservableList<Part> parts, TableColumn<Part, Integer> id, TableColumn<Part, String> name, TableColumn<Part, Integer> inv, TableColumn<Part, Double> price) {
         tableView.setItems(parts);
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -114,7 +115,6 @@ public abstract class BaseController {
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
-    @FXML
     /**
      * This method sets up the listeners for the parts search bar.
      * It selects a specific part with the given ID if the search bar contains only numbers.
@@ -122,6 +122,7 @@ public abstract class BaseController {
      * If the search bar is empty, it displays all parts.
      * If the search bar text doesn't match any part, it displays an error message.
      */
+    @FXML
     protected void setPartSearchListener(TextField search, TableView<Part> tableView) {
         search.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {

@@ -18,13 +18,13 @@ public class AddPartController extends PartsController {
     @FXML
     private static int idCounter = 1;
 
-    @FXML
     /**
-     * @param event
      * This method is called when the user clicks on the 'Save' button.
      * It saves the part and returns the user to the main screen.
      * If the part is invalid, it displays an error.
+     * @param event
      */
+    @FXML
     void onActionSave(ActionEvent event) {
         try {
             double price = Double.parseDouble(priceTextField.getText());

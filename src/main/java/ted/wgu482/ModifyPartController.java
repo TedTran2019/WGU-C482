@@ -15,24 +15,25 @@ import ted.wgu482.model.Part;
 import java.io.IOException;
 
 /**
- * RUNTIME ERROR LOCATED IN THE FIRST METHOD IN THIS CLASS (onActionSave)
+ * RUNTIME ERROR LOCATED IN THE FIRST INSTANCE METHOD IN THIS CLASS (onActionSave)
  * */
 public class ModifyPartController extends PartsController {
     @FXML
     protected TextField idTextField;
 
-    @FXML
     /**
      * RUNTIME ERROR - I originally tried to just modify the existing part, but that didn't work since there are
      * two different types of parts. I fixed this issue by just creating an entirely new part and using it to replace
      * the old part.
      *
-     * @param event
      * This method is called when the user clicks on the 'Save' button.
      * It saves the part and returns the user to the main screen.
      * If the part is invalid, it displays an error.
+     *
+     * @param event
      */
-    void onActionSave(ActionEvent event) {
+    @FXML
+    private void onActionSave(ActionEvent event) {
         try {
             int id = Integer.parseInt(idTextField.getText());
             double price = Double.parseDouble(priceTextField.getText());
@@ -59,12 +60,12 @@ public class ModifyPartController extends PartsController {
         }
     }
 
-    @FXML
     /**
+     * Replaces the old part found by ID with the new part
      * @param newPart the part to replace the old part
      * @param id the id of the part to replace
-     * Replaces the old part found by ID with the new part
      */
+    @FXML
     private void updatePartInList(Part newPart, int id) {
         int idx = 0;
         for (Part part: Inventory.getAllParts()) {
@@ -76,12 +77,12 @@ public class ModifyPartController extends PartsController {
         }
     }
 
-    @FXML
     /**
-     * @param part the part to be modified
      * Sets all the text fields to the part's values
+     * @param part the part to be modified
      */
-    void setPart(Part part) {
+    @FXML
+    public void setPart(Part part) {
         idTextField.setText(Integer.toString(part.getId()));
         nameTextField.setText(part.getName());
         invTextField.setText(Integer.toString(part.getStock()));

@@ -13,13 +13,13 @@ public class Product {
     private int max;
 
     /**
-     * Constructor for Product
      * @param id Product ID
      * @param name Product Name
      * @param price Product Price
      * @param stock Product Inventory Level
      * @param min Product Minimum Inventory Level
      * @param max Product Maximum Inventory Level
+     * Constructor for Product
      */
     public Product(int id, String name, double price, int stock, int min, int max) {
         this.id = id;

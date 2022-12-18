@@ -38,22 +38,22 @@ public abstract class PartsController extends BaseController {
     @FXML
     protected TextField priceTextField;
 
-    @FXML
     /**
-     * @param event
      * This method is called when the user clicks on the 'In-House' radio button.
      * It changes the label to 'Machine ID'.
+     * @param event
      */
+    @FXML
     protected void onActionInHouse(ActionEvent event) {
         MIDorCNameLabel.setText("Machine ID");
     }
 
-    @FXML
     /**
-     * @param event
      * This method is called when the user clicks on the 'Outsourced' radio button.
      * It changes the label to 'Company Name'.
+     * @param event
      */
+    @FXML
     protected void onActionOutsourced(ActionEvent event) {
         MIDorCNameLabel.setText("Company Name");
     }

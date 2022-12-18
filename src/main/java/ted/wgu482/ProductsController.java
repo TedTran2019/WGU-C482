@@ -61,14 +61,14 @@ public abstract class ProductsController extends BaseController {
     @FXML
     protected ObservableList<Part> associatedParts;
 
-    @FXML
     /**
-     * @param event
      * This method is called when the user clicks the "Add" button.
      * It adds the selected part to the associated parts table.
      * If no part is selected, it displays an error message.
      * If the part is already associated with the product, it displays an error message.
+     * @param event
      */
+    @FXML
     protected void onActionAddPart(ActionEvent event) {
         Part part = partTableView.getSelectionModel().getSelectedItem();
         if (part == null) {
@@ -81,13 +81,13 @@ public abstract class ProductsController extends BaseController {
         associatedParts.add(part);
     }
 
-    @FXML
     /**
-     * @param event
      * This method is called when the user clicks the "Remove Associated Part" button.
      * It removes the selected part from the associated parts table after displaying a confirmation message.
      * If no part is selected, it displays an error message.
+     * @param event
      */
+    @FXML
     protected void onActionRemoveAssociatedPart(ActionEvent event) {
         Part part = associatedPartTableView.getSelectionModel().getSelectedItem();
         if (part == null) {

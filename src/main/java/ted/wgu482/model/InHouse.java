@@ -4,7 +4,6 @@ public class InHouse extends Part {
     private int machineId;
 
     /**
-     * Constructor for InHouse
      * @param id Part ID
      * @param name Part Name
      * @param price Part Price
@@ -12,6 +11,7 @@ public class InHouse extends Part {
      * @param min Part Minimum Inventory Level
      * @param max Part Maximum Inventory Level
      * @param machineId Machine ID
+     * Constructor for InHouse
      */
     public InHouse(int id, String name, double price, int stock, int min, int max, int machineId) {
         super(id, name, price, stock, min, max);

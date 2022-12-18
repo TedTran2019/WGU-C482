@@ -54,43 +54,44 @@ public class MainController extends BaseController {
     @FXML
     private TextField productSearch;
 
-    @FXML
     /**
-     * @param event
      * This method is called when the user clicks the Add button in the Parts section.
      * It loads the AddPart scene.
+     * @param event
      */
+    @FXML
     void onActionAddPartForm(ActionEvent event) throws IOException {
         switchScene(event, "AddPart.fxml");
     }
 
-    @FXML
     /**
-     * @param event
      * This method is called when the user clicks the Modify button in the Parts section.
      * It loads the ModifyPart scene.
+     * @param event
+     * @throws IOException
      */
+    @FXML
     void onActionAddProductForm(ActionEvent event) throws IOException {
         switchScene(event, "AddProduct.fxml");
     }
 
-    @FXML
     /**
-     * @param event
      * This method is called when the user clicks the Exit button.
      * It exits the application.
+     * @param event
      */
+    @FXML
     void onActionExit(ActionEvent event) {
         System.exit(0);
     }
 
-    @FXML
     /**
-     * @param event
      * This method is called when the user clicks the Delete button in the Parts section.
      * It deletes the selected part from the inventory if a part is selected.
      * It displays an error message if no part is selected.
+     * @param event
      */
+    @FXML
     void onActionDeletePart(ActionEvent event) {
         if (partTableView.getSelectionModel().getSelectedItem() == null) {
             errorBox("Part not selected", "Please select a part to delete", "Please try again");
@@ -108,13 +109,13 @@ public class MainController extends BaseController {
         }
     }
 
-    @FXML
     /**
-     * @param event
      * This method is called when the user clicks the Delete button in the Products section.
      * It deletes the selected product from the inventory if a product is selected.
      * It displays an error message if no product is selected or if the product has associated parts.
+     * @param event
      */
+    @FXML
     void onActionDeleteProduct(ActionEvent event) {
         if (productTableView.getSelectionModel().getSelectedItem() == null) {
             errorBox("Product not selected", "Please select a product to delete", "Please try again");
@@ -135,12 +136,12 @@ public class MainController extends BaseController {
         }
     }
 
-    @FXML
     /**
-     * @param event
      * This method is called when the user clicks the Modify button in the Parts section.
      * It loads the ModifyPart scene.
+     * @param event
      */
+    @FXML
     void onActionModifyPartForm(ActionEvent event) throws IOException {
         if (partTableView.getSelectionModel().getSelectedItem() == null) {
             errorBox("Part not selected", "Please select a part to modify", "Please try again");
@@ -157,12 +158,12 @@ public class MainController extends BaseController {
         stage.show();
     }
 
-    @FXML
     /**
-     * @param event
      * This method is called when the user clicks the Modify button in the Products section.
      * It loads the ModifyProduct scene.
+     * @param event
      */
+    @FXML
     void onActionModifyProductForm(ActionEvent event) throws IOException {
         if (productTableView.getSelectionModel().getSelectedItem() == null) {
             errorBox("Product not selected", "Please select a product to modify", "Please try again");
@@ -179,10 +180,10 @@ public class MainController extends BaseController {
         stage.show();
     }
 
-    @FXML
     /**
      * This method sets the products tableview to display all products in the inventory.
      */
+    @FXML
     private void setProductsTableView() {
         productTableView.setItems(Inventory.getAllProducts());
         productIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -191,7 +192,6 @@ public class MainController extends BaseController {
         productPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
-    @FXML
     /**
      * This method sets up the listeners for the products search bar.
      * It selects a specific product with the given ID if the search bar contains only numbers.
@@ -199,6 +199,7 @@ public class MainController extends BaseController {
      * If the search bar is empty, it displays all products.
      * If the search bar text doesn't match any product, it displays an error message.
      */
+    @FXML
     private void setProductSearchListener() {
         productSearch.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
@@ -225,19 +226,19 @@ public class MainController extends BaseController {
         });
     }
 
-    @FXML
     /**
      * Sets up listeners for the parts search bar and products search bar.
      * */
+    @FXML
     private void setListeners() {
         setPartSearchListener(partSearch, partTableView);
         setProductSearchListener();
     }
 
-    @FXML
     /**
      * Prepares tables and sets up the listeners.
      */
+    @FXML
     public void initialize() {
         setPartsTableView(partTableView, Inventory.getAllParts(), partIDCol, partNameCol, partInvLevelCol, partPriceCol);
         setProductsTableView();

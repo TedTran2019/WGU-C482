@@ -4,7 +4,6 @@ public class Outsourced extends Part{
     private String companyName;
 
     /**
-     * Constructor for Outsourced
      * @param id Part ID
      * @param name Part Name
      * @param price Part Price
@@ -12,6 +11,7 @@ public class Outsourced extends Part{
      * @param min Part Minimum Inventory Level
      * @param max Part Maximum Inventory Level
      * @param companyName Company Name
+     * Constructor for Outsourced
      */
     public Outsourced(int id, String name, double price, int stock, int min, int max, String companyName) {
         super(id, name, price, stock, min, max);
