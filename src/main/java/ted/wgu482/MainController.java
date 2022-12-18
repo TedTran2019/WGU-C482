@@ -3,6 +3,7 @@ package ted.wgu482;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import ted.wgu482.model.Inventory;
 import ted.wgu482.model.Part;
 import ted.wgu482.model.Product;
@@ -155,6 +157,7 @@ public class MainController extends BaseController {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
         root = loader.getRoot();
         stage.setScene(new Scene(root));
+        eventHandlerExitToMainForm(stage);
         stage.show();
     }
 
@@ -177,7 +180,25 @@ public class MainController extends BaseController {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
         root = loader.getRoot();
         stage.setScene(new Scene(root));
+        eventHandlerExitToMainForm(stage);
         stage.show();
+    }
+
+    @FXML
+    private void eventHandlerExitToMainForm(Stage stage) {
+        stage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                windowEvent.consume();
+                try {
+                    root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     /**
