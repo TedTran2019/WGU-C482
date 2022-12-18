@@ -23,15 +23,21 @@ public class InventoryApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(InventoryApplication.class.getResource("Main.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        scene.setUserData("main");
         stage.setScene(scene);
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
                 Parent root = null;
                 try {
+                    if (stage.getScene().getUserData() != null) {
+                        System.exit(0);
+                    }
                     event.consume();
                     root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-                    stage.setScene(new Scene(root));
+                    Scene newScene = new Scene(root);
+                    newScene.setUserData("main");
+                    stage.setScene(newScene);
                     stage.show();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
