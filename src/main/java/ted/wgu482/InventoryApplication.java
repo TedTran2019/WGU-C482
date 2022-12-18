@@ -40,7 +40,7 @@ public class InventoryApplication extends Application {
                     stage.setScene(newScene);
                     stage.show();
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
                 }
             }
         });
