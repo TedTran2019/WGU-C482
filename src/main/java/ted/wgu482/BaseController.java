@@ -113,4 +113,38 @@ public abstract class BaseController {
         inv.setCellValueFactory(new PropertyValueFactory<>("stock"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
+
+    @FXML
+    /**
+     * This method sets up the listeners for the parts search bar.
+     * It selects a specific part with the given ID if the search bar contains only numbers.
+     * Otherwise, it filters the parts table by the search bar text.
+     * If the search bar is empty, it displays all parts.
+     * If the search bar text doesn't match any part, it displays an error message.
+     */
+    protected void setPartSearchListener(TextField search, TableView<Part> tableView) {
+        search.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isEmpty()) {
+                tableView.getSelectionModel().clearSelection();
+                tableView.setItems(Inventory.getAllParts());
+                return;
+            }
+
+            if (newValue.matches("\\d+")) {
+                Part foundPart = Inventory.lookupPart(Integer.parseInt(newValue));
+                if (foundPart != null) {
+                    tableView.getSelectionModel().select(foundPart);
+                } else {
+                    tableView.getSelectionModel().clearSelection();
+                    errorBox("Part not found", "No Part found with ID: " + newValue, "Please try again.");
+                }
+            } else {
+                ObservableList<Part> foundParts = Inventory.lookupPart(newValue);
+                tableView.setItems(foundParts);
+                if (foundParts.size() == 0) {
+                    errorBox("Part not found", "No part found containing name: " + newValue, "Please try again.");
+                }
+            }
+        });
+    }
 }

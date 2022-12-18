@@ -53,45 +53,11 @@ public class AddProductController extends ProductsController {
 
     @FXML
     /**
-     * This method sets up the listeners for the parts search bar.
-     * It selects a specific part with the given ID if the search bar contains only numbers.
-     * Otherwise, it filters the parts table by the search bar text.
-     * If the search bar is empty, it displays all parts.
-     * If the search bar text doesn't match any part, it displays an error message.
-     */
-    private void setPartSearchListener() {
-        partSearchBar.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.isEmpty()) {
-                partTableView.getSelectionModel().clearSelection();
-                partTableView.setItems(Inventory.getAllParts());
-                return;
-            }
-
-            if (newValue.matches("\\d+")) {
-                Part foundPart = Inventory.lookupPart(Integer.parseInt(newValue));
-                if (foundPart != null) {
-                    partTableView.getSelectionModel().select(foundPart);
-                } else {
-                    partTableView.getSelectionModel().clearSelection();
-                    errorBox("Part not found", "No Part found with ID: " + newValue, "Please try again.");
-                }
-            } else {
-                ObservableList<Part> foundParts = Inventory.lookupPart(newValue);
-                partTableView.setItems(foundParts);
-                if (foundParts.size() == 0) {
-                    errorBox("Part not found", "No part found containing name: " + newValue, "Please try again.");
-                }
-            }
-        });
-    }
-
-    @FXML
-    /**
      * Sets up tables and listeners
      * */
     public void initialize() {
         setPartsTableView(partTableView, Inventory.getAllParts(), partIDCol, partNameCol, invCol, priceCol);
         setPartsTableView(associatedPartTableView, associatedParts, associatedPartIDCol, associatedPartNameCol, associatedInvCol, associatedPriceCol);
-        setPartSearchListener();
+        setPartSearchListener(partSearchBar, partTableView);
     }
 }
