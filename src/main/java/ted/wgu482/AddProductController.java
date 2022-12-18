@@ -53,30 +53,6 @@ public class AddProductController extends ProductsController {
 
     @FXML
     /**
-     * Prepares the part table
-     * */
-    private void setPartTableView() {
-        partTableView.setItems(Inventory.getAllParts());
-        partIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        invCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-        priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-    }
-
-    @FXML
-    /**
-     * Prepares the associated part table
-     * */
-    private void setAssociatedPartTableView() {
-        associatedPartTableView.setItems(associatedParts);
-        associatedPartIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        associatedPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        associatedInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-        associatedPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-    }
-
-    @FXML
-    /**
      * This method sets up the listeners for the parts search bar.
      * It selects a specific part with the given ID if the search bar contains only numbers.
      * Otherwise, it filters the parts table by the search bar text.
@@ -114,8 +90,8 @@ public class AddProductController extends ProductsController {
      * Sets up tables and listeners
      * */
     public void initialize() {
-        setPartTableView();
-        setAssociatedPartTableView();
+        setPartsTableView(partTableView, Inventory.getAllParts(), partIDCol, partNameCol, invCol, priceCol);
+        setPartsTableView(associatedPartTableView, associatedParts, associatedPartIDCol, associatedPartNameCol, associatedInvCol, associatedPriceCol);
         setPartSearchListener();
     }
 }

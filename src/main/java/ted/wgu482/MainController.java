@@ -181,20 +181,10 @@ public class MainController extends BaseController {
 
     @FXML
     /**
-     * This method sets the columns of the Parts table.
-     */
-    private void setPartTableCols() {
-        partIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        partInvLevelCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-        partPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-    }
-
-    @FXML
-    /**
      * This method sets the columns of the Products table.
      */
-    private void setProductTableCols() {
+    private void setProductsTableView() {
+        productTableView.setItems(Inventory.getAllProducts());
         productIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         productNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         productInvlevelCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
@@ -283,10 +273,8 @@ public class MainController extends BaseController {
      * Prepares tables and sets up the listeners.
      */
     public void initialize() {
-        partTableView.setItems(Inventory.getAllParts());
-        setPartTableCols();
-        productTableView.setItems(Inventory.getAllProducts());
-        setProductTableCols();
+        setPartsTableView(partTableView, Inventory.getAllParts(), partIDCol, partNameCol, partInvLevelCol, partPriceCol);
+        setProductsTableView();
         setListeners();
     }
 }

@@ -79,33 +79,9 @@ public class ModifyProductController extends ProductsController {
         minTextField.setText(Integer.toString(product.getMin()));
 
         associatedParts = product.getAllAssociatedParts();
-        setPartTableView();
-        setAssociatedPartTableView();
+        setPartsTableView(partTableView, Inventory.getAllParts(), partIDCol, partNameCol, invCol, priceCol);
+        setPartsTableView(associatedPartTableView, associatedParts, associatedPartIDCol, associatedPartNameCol, associatedInvCol, associatedPriceCol);
         setPartSearchListener();
-    }
-
-    @FXML
-    /**
-     * Prepares the part table
-     * */
-    private void setPartTableView() {
-        partTableView.setItems(Inventory.getAllParts());
-        partIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        invCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-        priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-    }
-
-    @FXML
-    /**
-     * Prepares the associated part table
-     * */
-    private void setAssociatedPartTableView() {
-        associatedPartTableView.setItems(associatedParts);
-        associatedPartIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        associatedPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        associatedInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-        associatedPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
     @FXML

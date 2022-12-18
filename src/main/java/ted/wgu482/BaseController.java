@@ -1,14 +1,16 @@
 package ted.wgu482;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import ted.wgu482.model.Inventory;
+import ted.wgu482.model.Part;
 
 import java.io.IOException;
 
@@ -93,5 +95,22 @@ public abstract class BaseController {
             return true;
         }
         return false;
+    }
+
+    /**
+     * @param tableView The table to be populated
+     * @param parts The list of parts to be added to the table
+     * @param id The id column
+     * @param name The name column
+     * @param inv The stock column
+     * @param price The price column
+     * This sets a parts table view with the given columns.
+     */
+    protected void setPartsTableView(TableView<Part> tableView, ObservableList<Part> parts, TableColumn<Part, Integer> id, TableColumn<Part, String> name, TableColumn<Part, Integer> inv, TableColumn<Part, Double> price) {
+        tableView.setItems(parts);
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        inv.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        price.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 }
