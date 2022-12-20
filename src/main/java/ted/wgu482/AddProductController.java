@@ -19,9 +19,6 @@ public class AddProductController extends ProductsController {
     @FXML
     private static int idCounter = 1;
 
-    @FXML
-    private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
-
     /**
      * This method is called when the user clicks on the 'Save' button.
      * It saves the product and returns the user to the main screen.

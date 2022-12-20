@@ -59,7 +59,7 @@ public abstract class ProductsController extends BaseController {
     protected TextField priceTextField;
 
     @FXML
-    protected ObservableList<Part> associatedParts;
+    protected ObservableList<Part> associatedParts = FXCollections.observableArrayList();
 
     /**
      * This method is called when the user clicks the "Add" button.
